@@ -37,3 +37,7 @@ array of dependencies.
 `useEffect(() => {}, [])`
 
 Whenever the values inside the dependency array change, that is when I will run this function.
+
+# Route Components
+
+Route Components are Used Just for routing
