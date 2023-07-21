@@ -41,3 +41,10 @@ Whenever the values inside the dependency array change, that is when I will run 
 # Route Components
 
 Route Components are Used Just for routing
+
+# New JS Technique
+
+`{...formFields, [name]: value}`
+
+This looks weird but it is really just an object literal. It creates a new object, a shallow copy of formFields, with the `...formFields` spread operator. Then it will add a new key: value using the `[name]: value` or it will update an existing value
+if the key passed already exists.
