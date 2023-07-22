@@ -1,4 +1,7 @@
 import { useState } from "react";
+import FormInput from "../form-input/form-input.component";
+import Button from "../button/button.component";
+import "./sign-up-form.styles.scss";
 
 import {
   createAuthUserWithEmailAndPassword,
@@ -17,6 +20,10 @@ const SignUpForm = () => {
 
   const { displayName, email, password, confirmPassword } = formFields;
 
+  const resetFormFields = () => {
+    setFormFields(defaultFormFields);
+  };
+
   // Handle Submit
 
   const handleSubmit = async (event) => {
@@ -34,6 +41,7 @@ const SignUpForm = () => {
       );
 
       await createUserDocumentFromAuth(user, { displayName });
+      resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("that email address is already in use");
@@ -54,45 +62,43 @@ const SignUpForm = () => {
   //Return
 
   return (
-    <div>
-      <h1>Signup with your Email and Password</h1>
+    <div className="sign-up-container">
+      <h2>Don't Have an Account?</h2>
+      <span>Signup with your Email and Password</span>
       <form onSubmit={handleSubmit}>
-        <label>Display Name</label>
-        <input
+        <FormInput
+          label="Display Name"
           type="text"
           required
           onChange={handleChange}
           name="displayName"
           value={displayName}
         />
-
-        <label>Email</label>
-        <input
-          type="email"
+        <FormInput
+          label="Email"
+          type="text"
           required
           onChange={handleChange}
           name="email"
           value={email}
         />
-
-        <label>Password</label>
-        <input
+        <FormInput
+          label="Password"
           type="password"
           required
           onChange={handleChange}
           name="password"
           value={password}
         />
-
-        <label>Confirm Password</label>
-        <input
+        <FormInput
+          label="Confirm Password"
           type="password"
           required
           onChange={handleChange}
           name="confirmPassword"
           value={confirmPassword}
         />
-        <button type="submit">Sign Up</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
