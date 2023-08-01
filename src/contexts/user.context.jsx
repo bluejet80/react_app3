@@ -6,6 +6,8 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
 });
 
+// the provider component that wraps the components that need access to the value
+
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };
