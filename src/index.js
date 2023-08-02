@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { UserProvider } from "./contexts/user.context";
 import { ProductsProvider } from "./contexts/product.context";
+import { CartProvider } from "./contexts/cart.context";
 
 //you want to think about how to nest your contexts
 //do you want the User Provider to be able to Access the Products provider or the other way around?
@@ -23,7 +24,9 @@ root.render(
     <BrowserRouter>
       <UserProvider>
         <ProductsProvider>
-          <App />
+          <CartProvider>
+            <App />
+          </CartProvider>
         </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
