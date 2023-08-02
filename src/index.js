@@ -5,6 +5,15 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import { UserProvider } from "./contexts/user.context";
+import { ProductsProvider } from "./contexts/product.context";
+
+//you want to think about how to nest your contexts
+//do you want the User Provider to be able to Access the Products provider or the other way around?
+//
+// In our case we want the ProductsProvider to be able to access the UserProvider in order to get
+// maybe geolocation data or something else so we want to Wrap the UserProvider around
+// the ProductsProvider so that the Products Provider can reach up and get access to the
+// UserProvider. The Parent Components cant necessarily get data from their children...
 
 import "./index.scss";
 
@@ -13,7 +22,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <ProductsProvider>
+          <App />
+        </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>
